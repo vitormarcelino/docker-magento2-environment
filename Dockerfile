@@ -10,23 +10,12 @@ RUN apt update
 
 RUN apt install -y git libcurl3-dev libxml2-dev libxslt-dev autoconf \
     zlib1g-dev libpng-dev libjpeg-dev libwebp-dev libjpeg62-turbo-dev libxpm-dev libfreetype6-dev \
-    automake libtool m4 openssh-client libmcrypt-dev libpcre3-dev libzip-dev
-
-# RUN docker-php-ext-configure gd \
-#     --with-gd \
-#     --with-webp \
-#     --with-jpeg \
-#     --with-png \
-#     --with-zlib \
-#     --with-xpm \
-#     --with-freetype \
-#     --enable-gd-native-ttf
+    automake libtool m4 openssh-client libmcrypt-dev libpcre3-dev libzip-dev unzip
 
 RUN docker-php-ext-configure gd --with-webp --with-jpeg --with-xpm --with-freetype
 
 # Setup PHP
 RUN docker-php-ext-install bcmath iconv intl pdo_mysql simplexml soap xsl zip sockets gd
-# RUN docker-php-ext-configure gd --with-freetype --with-jpeg
 COPY www.conf /usr/local/etc/php-fpm.d/www.conf
 
 # Install Composer
