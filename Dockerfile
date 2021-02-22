@@ -17,6 +17,8 @@ RUN docker-php-ext-configure gd --with-webp --with-jpeg --with-xpm --with-freety
 # Setup PHP
 RUN docker-php-ext-install bcmath iconv intl pdo_mysql simplexml soap xsl zip sockets gd
 COPY www.conf /usr/local/etc/php-fpm.d/www.conf
+RUN cd /usr/local/etc/php/conf.d/ && \
+  echo 'memory_limit = -1' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini
 
 # Install Composer
 RUN curl https://getcomposer.org/download/1.10.17/composer.phar > composer && chmod +x composer && mv composer /usr/local/bin/composer
