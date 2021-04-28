@@ -14,8 +14,7 @@ RUN apt install -y git libcurl3-dev libxml2-dev libxslt-dev autoconf \
 
 RUN docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-webp-dir=/usr/include/  --with-jpeg-dir=/usr/include/
 
-# RUN docker-php-ext-configure gd --with-freetype --with-jpeg
-# RUN docker-php-ext-configure gd --with-webp --with-jpeg --with-xpm --with-freetype
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 # Setup PHP
 RUN docker-php-ext-install bcmath iconv intl pdo_mysql simplexml soap xsl zip sockets gd
