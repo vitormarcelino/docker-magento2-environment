@@ -25,6 +25,11 @@ RUN cd /usr/local/etc/php/conf.d/ && \
 # Install Composer
 RUN curl https://getcomposer.org/download/1.10.17/composer.phar > composer && chmod +x composer && mv composer /usr/local/bin/composer
 
+# Install n98-magerun2
+RUN curl -sS -O https://files.magerun.net/n98-magerun2-latest.phar \
+    && mv n98-magerun2-latest.phar /usr/bin/n98-magerun2 \
+    && chmod +x /usr/bin/n98-magerun2
+
 # Setup User
 RUN mkdir -p $USER_ROOT
 RUN useradd -u 1000 -d $USER_ROOT $USER_NAME
